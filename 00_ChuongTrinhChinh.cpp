@@ -11,11 +11,17 @@ volatile int sensor_value2 = 0;
 void SensorTask(void *pvParameters) {
   while (1) {
     _sensor.readSensor();
-    sensor_value1 = _sensor.sensorValue1;
+    sensor_value1 = _sensor.sensorValue2;
 
-    Serial.print("Sensor 1: ");
-    Serial.println(sensor_value1);
-
+    // Serial.print("Sensor 1: ");
+    // Serial.println(sensor_value1);
+    Serial.print("sensor2 - MA1:");
+    Serial.print(_sensor.MA1_output_Sensor2);
+    Serial.print(" ");
+    Serial.print("sensor2 - MA2:");
+    Serial.println(_sensor.MA2_output_Sensor2);
+    Serial.print(" ");
+    Serial.println(_sensor.MA2_output_Sensor2 - _sensor.MA1_output_Sensor2);
     vTaskDelay(pdMS_TO_TICKS(100));  // Đọc cảm biến sau mỗi 100ms
   }
 }
